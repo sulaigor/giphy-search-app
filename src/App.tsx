@@ -1,5 +1,7 @@
+import ContextProvider from 'core/ContextProvider';
+
 const App = () => {
-  return <div>Giphy search app</div>;
+  return <ContextProvider>Giphy search app</ContextProvider>;
 };
 
 export default App;
