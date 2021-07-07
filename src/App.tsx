@@ -1,7 +1,12 @@
+import AppLayout from 'core/AppLayout';
 import ContextProvider from 'core/ContextProvider';
 
 const App = () => {
-  return <ContextProvider>Giphy search app</ContextProvider>;
+  return (
+    <ContextProvider>
+      <AppLayout />
+    </ContextProvider>
+  );
 };
 
 export default App;
