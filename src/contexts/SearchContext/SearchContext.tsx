@@ -1,11 +1,19 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import { IChildrenProps as IProps } from 'types/props';
+import searchReducer, { initialState } from './searchReducer';
 import { SearchContextType } from './types';
 
-const Context = createContext<SearchContextType>({});
+const Context = createContext<SearchContextType>({
+  ...initialState,
+});
 
 const SearchContext = ({ children }: IProps) => {
-  const contextValue: SearchContextType = {};
+  const [reducerState] = useReducer(searchReducer, initialState);
+
+  const contextValue: SearchContextType = {
+    ...reducerState,
+  };
+
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };
 

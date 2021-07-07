@@ -1,1 +1,3 @@
-export type SearchContextType = Record<string, any>;
+import { IReducerState } from './searchReducer';
+
+export type SearchContextType = IReducerState;
