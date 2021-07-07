@@ -23,12 +23,16 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "type-check": "tsc"
   },
+  "pre-commit": "lint, type-check",
   "browserslist": {
     "production": [
       ">0.2%",
