@@ -16,7 +16,7 @@ const searchReducer: ReducerFunctionType<IReducerState> = (state, action) => {
     case SET_GIFS:
       return {
         ...state,
-        gifs: payload?.newGifs as IGif[],
+        gifs: { ...state.gifs, [state.page]: payload?.newGifs as IGif[] },
       };
 
     default:

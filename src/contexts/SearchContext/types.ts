@@ -1,7 +1,12 @@
+import { IGif } from 'types/gifs';
 import { IReducerState } from './searchReducer';
 
 interface ISearchContextActions {
   setSearchQuery: (newSearchQuery: string) => void;
 }
 
-export type SearchContextType = IReducerState & ISearchContextActions;
+interface ISearchContextState {
+  gifs: IGif[] | null;
+}
+
+export type SearchContextType = IReducerState & ISearchContextActions & ISearchContextState;

@@ -11,12 +11,13 @@ import { getGifs } from './utils';
 
 const Context = createContext<SearchContextType>({
   ...initialState,
+  gifs: null,
   setSearchQuery: dummyFunction,
 });
 
 const SearchContext = ({ children }: IProps) => {
   const [reducerState, dispatch] = useReducer(searchReducer, initialState);
-  const { searchQuery, page } = reducerState;
+  const { gifs, searchQuery, page } = reducerState;
 
   useDebounce(
     async () => {
@@ -38,6 +39,7 @@ const SearchContext = ({ children }: IProps) => {
 
   const contextValue: SearchContextType = {
     ...reducerState,
+    gifs: gifs?.[page] ?? null,
     setSearchQuery,
   };
 
