@@ -1,8 +1,4 @@
-import { ReactNode } from 'react';
-
-interface IProps {
-  children: string | ReactNode;
-}
+import { IStringChildrenProps as IProps } from 'types/props';
 
 const Title = ({ children }: IProps) => {
   return <h2>{children}</h2>;
