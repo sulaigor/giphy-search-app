@@ -1,0 +1,16 @@
+.paginationWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0 -0.25em;
+  overflow-y: auto;
+}
+
+.paginationList {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto 0.25em;
+}
+
+.paginationItem {
+  padding: 0 0.25em;
+}

@@ -1,24 +1,29 @@
 import Button from 'components/Button';
 import { useSearchContext } from 'contexts/SearchContext';
 import { getPageNumber } from './utils';
+import css from './pagination.module.scss';
 
 const Pagination = () => {
   const { maxPages, setCurrentPage } = useSearchContext();
 
+  if (maxPages <= 1) {
+    return null;
+  }
+
   const handleLinkClick = (pageIndex: number) => setCurrentPage(getPageNumber(pageIndex));
 
-  const pages = new Array(maxPages).fill(null);
-
   return (
-    <ul>
-      {pages.map((_, index: number) => (
-        <li key={`pagination-link-item-${index}`}>
-          <Button type='link' onClick={() => handleLinkClick(index)}>
-            {getPageNumber(index)}
-          </Button>
-        </li>
-      ))}
-    </ul>
+    <div className={css.paginationWrapper}>
+      <ul className={css.paginationList}>
+        {new Array(maxPages).fill(null).map((_, index: number) => (
+          <li key={`pagination-link-item-${index}`} className={css.paginationItem}>
+            <Button type='link' onClick={() => handleLinkClick(index)}>
+              {getPageNumber(index)}
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
