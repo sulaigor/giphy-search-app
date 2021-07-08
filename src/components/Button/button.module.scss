@@ -1,0 +1,25 @@
+.btn {
+  font-size: 1em;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.link {
+  padding-bottom: 0.05em;
+  border-bottom: 1px solid #000;
+}
+
+.primary {
+  font-size: 1.2em;
+  padding: 0.35em 1em 0.25em;
+  border: 1px solid #000;
+  border-radius: 2em;
+}
