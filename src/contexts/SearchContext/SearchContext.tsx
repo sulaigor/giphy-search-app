@@ -5,7 +5,7 @@ import { DEFAULT_DEBOUNCE_DURATION } from 'const/debounce';
 import { useDebounce } from 'hooks/useDebounce';
 import { dummyFunction } from 'utils/dummy';
 import searchReducer, { initialState } from './searchReducer';
-import { setGifsAction, setSearchQueryAction } from './searchReducer/actions';
+import { setGifsAction, setMaxPagesAction, setSearchQueryAction } from './searchReducer/actions';
 import { SearchContextType } from './types';
 import { getGifs } from './utils';
 
@@ -24,8 +24,12 @@ const SearchContext = ({ children }: IProps) => {
       if (!searchQuery) return;
 
       try {
-        const { newGifs } = await getGifs(searchQuery, page);
-        if (newGifs.length > 0) setGifs(newGifs);
+        const { newGifs, maxPages } = await getGifs(searchQuery, page);
+
+        if (newGifs.length > 0) {
+          setGifs(newGifs);
+          setMaxPages(maxPages);
+        }
       } catch (err) {
         console.error('Get new gifs error:', err);
       }
@@ -35,6 +39,7 @@ const SearchContext = ({ children }: IProps) => {
   );
 
   const setGifs = (newGifs: IGif[]) => dispatch(setGifsAction(newGifs));
+  const setMaxPages = (maxPages: number) => dispatch(setMaxPagesAction(maxPages));
   const setSearchQuery = (newSearchQuery: string) => dispatch(setSearchQueryAction(newSearchQuery));
 
   const contextValue: SearchContextType = {
