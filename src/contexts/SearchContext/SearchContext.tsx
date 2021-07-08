@@ -16,20 +16,20 @@ const Context = createContext<SearchContextType>({
 
 const SearchContext = ({ children }: IProps) => {
   const [reducerState, dispatch] = useReducer(searchReducer, initialState);
-  const { searchQuery } = reducerState;
+  const { searchQuery, page } = reducerState;
 
   useDebounce(
     async () => {
       if (!searchQuery) return;
 
       try {
-        const newGifs = await getGifs(searchQuery);
+        const newGifs = await getGifs(searchQuery, page);
         if (newGifs.length > 0) setGifs(newGifs);
       } catch (err) {
         console.error('Get new gifs error:', err);
       }
     },
-    [searchQuery],
+    [searchQuery, page],
     DEFAULT_DEBOUNCE_DURATION
   );
 
