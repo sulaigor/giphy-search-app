@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
-import { GifType } from 'types/gifs';
+import { IGif } from 'types/gifs';
 import { IChildrenProps as IProps } from 'types/props';
 import { DEFAULT_DEBOUNCE_DURATION } from 'const/debounce';
 import { useDebounce } from 'hooks/useDebounce';
@@ -33,7 +33,7 @@ const SearchContext = ({ children }: IProps) => {
     DEFAULT_DEBOUNCE_DURATION
   );
 
-  const setGifs = (newGifs: GifType[]) => dispatch(setGifsAction(newGifs));
+  const setGifs = (newGifs: IGif[]) => dispatch(setGifsAction(newGifs));
   const setSearchQuery = (newSearchQuery: string) => dispatch(setSearchQueryAction(newSearchQuery));
 
   const contextValue: SearchContextType = {

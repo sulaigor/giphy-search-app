@@ -1,4 +1,4 @@
-import { GifType } from 'types/gifs';
+import { IGif } from 'types/gifs';
 import { ReducerFunctionType } from 'types/reducer';
 import { SET_GIFS, SET_SEARCH_QUERY } from './actionTypes';
 import { IReducerState } from './types';
@@ -16,7 +16,7 @@ const searchReducer: ReducerFunctionType<IReducerState> = (state, action) => {
     case SET_GIFS:
       return {
         ...state,
-        gifs: payload?.newGifs as GifType[],
+        gifs: payload?.newGifs as IGif[],
       };
 
     default:

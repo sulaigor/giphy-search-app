@@ -1,6 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
-import { GifType } from 'types/gifs';
+import { IGif } from 'types/gifs';
 import { getEnviroment } from 'utils/enviroment';
 
 const getSearchQuery = (searchQuery: string) => {
@@ -21,10 +21,10 @@ const getSearchUrl = (searchQuery: string): string => {
   });
 };
 
-export const getGifs = async (searchQuery: string): Promise<GifType[]> => {
+export const getGifs = async (searchQuery: string): Promise<IGif[]> => {
   const {
     data: { data: newGifs },
-  } = await axios.get<{ data: GifType[] }>(getSearchUrl(searchQuery));
+  } = await axios.get<{ data: IGif[] }>(getSearchUrl(searchQuery));
 
   return newGifs;
 };

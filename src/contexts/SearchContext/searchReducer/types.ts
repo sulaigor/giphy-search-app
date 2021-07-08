@@ -1,6 +1,6 @@
-import { GifType } from 'types/gifs';
+import { IGif } from 'types/gifs';
 
 export interface IReducerState {
   searchQuery: string;
-  gifs: GifType[] | null;
+  gifs: IGif[] | null;
 }
