@@ -1,10 +1,14 @@
-import React from 'react';
+import Title from 'components/Title';
+import Paragraph from 'components/Paragraph';
+import SadEmoticon from './SadEmoticon';
+import css from './emptyGifs.module.scss';
 
 const EmptyGifs = () => {
   return (
-    <div>
-      <h2>No Gifs...</h2>
-      <p>Try to find some!</p>
+    <div className={css.wrapper}>
+      <Title>No Gifs...</Title>
+      <Paragraph>Try to find some!</Paragraph>
+      <SadEmoticon />
     </div>
   );
 };
