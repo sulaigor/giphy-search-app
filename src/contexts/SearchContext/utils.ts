@@ -26,10 +26,17 @@ const getSearchUrl = (searchQuery: string, page: number): string => {
   });
 };
 
-export const getGifs = async (searchQuery: string, page: number): Promise<IGif[]> => {
+interface IGetGifsReturn {
+  newGifs: IGif[];
+  maxPages: number;
+}
+
+export const getGifs = async (searchQuery: string, page: number): Promise<IGetGifsReturn> => {
   const {
     data: { data: newGifs },
   } = await axios.get<{ data: IGif[] }>(getSearchUrl(searchQuery, page));
 
-  return newGifs;
+  const maxPages = 10;
+
+  return { newGifs, maxPages };
 };

@@ -24,7 +24,7 @@ const SearchContext = ({ children }: IProps) => {
       if (!searchQuery) return;
 
       try {
-        const newGifs = await getGifs(searchQuery, page);
+        const { newGifs } = await getGifs(searchQuery, page);
         if (newGifs.length > 0) setGifs(newGifs);
       } catch (err) {
         console.error('Get new gifs error:', err);
