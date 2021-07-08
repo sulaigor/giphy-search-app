@@ -1,8 +1,11 @@
 import Button from 'components/Button';
+import { useSearchContext } from 'contexts/SearchContext';
 import { getPageNumber } from './utils';
 
 const Pagination = () => {
-  const pages = new Array(10).fill(null);
+  const { maxPages } = useSearchContext();
+
+  const pages = new Array(maxPages).fill(null);
 
   const handleLinkClick = (pageIndex: number) => {};
 
