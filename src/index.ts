@@ -1,3 +1,4 @@
+import 'assets/styles/main.scss';
 import { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { checkEnvVariables } from 'scripts/checkEnvVariables';
