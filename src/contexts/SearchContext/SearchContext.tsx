@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from 'react';
-import axios from 'axios';
 import { GifType } from 'types/gifs';
 import { IChildrenProps as IProps } from 'types/props';
 import { DEFAULT_DEBOUNCE_DURATION } from 'const/debounce';
@@ -8,7 +7,7 @@ import { dummyFunction } from 'utils/dummy';
 import searchReducer, { initialState } from './searchReducer';
 import { setGifsAction, setSearchQueryAction } from './searchReducer/actions';
 import { SearchContextType } from './types';
-import { getSearchUrl } from './utils';
+import { getGifs } from './utils';
 
 const Context = createContext<SearchContextType>({
   ...initialState,
@@ -24,10 +23,7 @@ const SearchContext = ({ children }: IProps) => {
       if (!searchQuery) return;
 
       try {
-        const {
-          data: { data: newGifs },
-        } = await axios.get<{ data: GifType[] }>(getSearchUrl(searchQuery));
-
+        const newGifs = await getGifs(searchQuery);
         if (newGifs.length > 0) setGifs(newGifs);
       } catch (err) {
         console.error('Get new gifs error:', err);
