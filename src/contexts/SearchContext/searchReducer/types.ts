@@ -2,7 +2,7 @@ import { IGif } from 'types/gifs';
 
 export interface IReducerPublicState {
   searchQuery: string;
-  page: number;
+  currentPage: number;
   maxPages: number;
 }
 

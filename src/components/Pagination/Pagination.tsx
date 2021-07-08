@@ -3,11 +3,11 @@ import { useSearchContext } from 'contexts/SearchContext';
 import { getPageNumber } from './utils';
 
 const Pagination = () => {
-  const { maxPages, setPage } = useSearchContext();
+  const { maxPages, setCurrentPage } = useSearchContext();
+
+  const handleLinkClick = (pageIndex: number) => setCurrentPage(getPageNumber(pageIndex));
 
   const pages = new Array(maxPages).fill(null);
-
-  const handleLinkClick = (pageIndex: number) => setPage(getPageNumber(pageIndex));
 
   return (
     <ul>

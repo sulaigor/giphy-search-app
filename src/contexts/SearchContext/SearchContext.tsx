@@ -8,7 +8,7 @@ import searchReducer, { initialState } from './searchReducer';
 import {
   setGifsAction,
   setMaxPagesAction,
-  setPageAction,
+  setCurrentPageAction,
   setSearchQueryAction,
 } from './searchReducer/actions';
 import { SearchContextType } from './types';
@@ -18,19 +18,19 @@ const Context = createContext<SearchContextType>({
   ...initialState,
   gifs: null,
   setSearchQuery: dummyFunction,
-  setPage: dummyFunction,
+  setCurrentPage: dummyFunction,
 });
 
 const SearchContext = ({ children }: IProps) => {
   const [reducerState, dispatch] = useReducer(searchReducer, initialState);
-  const { gifs, searchQuery, page } = reducerState;
+  const { gifs, searchQuery, currentPage } = reducerState;
 
   useDebounce(
     async () => {
       if (!searchQuery) return;
 
       try {
-        const { newGifs, maxPages } = await getGifs(searchQuery, page);
+        const { newGifs, maxPages } = await getGifs(searchQuery, currentPage);
 
         if (newGifs.length > 0) {
           setGifs(newGifs);
@@ -40,20 +40,20 @@ const SearchContext = ({ children }: IProps) => {
         console.error('Get new gifs error:', err);
       }
     },
-    [searchQuery, page],
+    [searchQuery, currentPage],
     DEFAULT_DEBOUNCE_DURATION
   );
 
   const setGifs = (newGifs: IGif[]) => dispatch(setGifsAction(newGifs));
-  const setPage = (newPage: number) => dispatch(setPageAction(newPage));
+  const setCurrentPage = (newCurrentPage: number) => dispatch(setCurrentPageAction(newCurrentPage));
   const setMaxPages = (newMaxPages: number) => dispatch(setMaxPagesAction(newMaxPages));
   const setSearchQuery = (newSearchQuery: string) => dispatch(setSearchQueryAction(newSearchQuery));
 
   const contextValue: SearchContextType = {
     ...reducerState,
-    gifs: gifs?.[page] ?? null,
+    gifs: gifs?.[currentPage] ?? null,
     setSearchQuery,
-    setPage,
+    setCurrentPage,
   };
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
