@@ -1,6 +1,7 @@
 import { IGif } from 'types/gifs';
 import { ReducerFunctionType } from 'types/reducer';
 import { SET_GIFS, SET_MAX_PAGE, SET_CURRENT_PAGE, SET_SEARCH_QUERY } from './actionTypes';
+import { DEFAULT_CURRENT_PAGE } from './const';
 import { IReducerState } from './types';
 
 const searchReducer: ReducerFunctionType<IReducerState> = (state, action) => {
@@ -11,6 +12,7 @@ const searchReducer: ReducerFunctionType<IReducerState> = (state, action) => {
       return {
         ...state,
         searchQuery: payload?.newSearchQuery as string,
+        currentPage: DEFAULT_CURRENT_PAGE,
       };
 
     case SET_CURRENT_PAGE:
