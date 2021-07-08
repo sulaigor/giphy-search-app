@@ -5,7 +5,12 @@ import { DEFAULT_DEBOUNCE_DURATION } from 'const/debounce';
 import { useDebounce } from 'hooks/useDebounce';
 import { dummyFunction } from 'utils/dummy';
 import searchReducer, { initialState } from './searchReducer';
-import { setGifsAction, setMaxPagesAction, setSearchQueryAction } from './searchReducer/actions';
+import {
+  setGifsAction,
+  setMaxPagesAction,
+  setPageAction,
+  setSearchQueryAction,
+} from './searchReducer/actions';
 import { SearchContextType } from './types';
 import { getGifs } from './utils';
 
@@ -13,6 +18,7 @@ const Context = createContext<SearchContextType>({
   ...initialState,
   gifs: null,
   setSearchQuery: dummyFunction,
+  setPage: dummyFunction,
 });
 
 const SearchContext = ({ children }: IProps) => {
@@ -39,13 +45,15 @@ const SearchContext = ({ children }: IProps) => {
   );
 
   const setGifs = (newGifs: IGif[]) => dispatch(setGifsAction(newGifs));
-  const setMaxPages = (maxPages: number) => dispatch(setMaxPagesAction(maxPages));
+  const setPage = (newPage: number) => dispatch(setPageAction(newPage));
+  const setMaxPages = (newMaxPages: number) => dispatch(setMaxPagesAction(newMaxPages));
   const setSearchQuery = (newSearchQuery: string) => dispatch(setSearchQueryAction(newSearchQuery));
 
   const contextValue: SearchContextType = {
     ...reducerState,
     gifs: gifs?.[page] ?? null,
     setSearchQuery,
+    setPage,
   };
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
