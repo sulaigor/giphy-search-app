@@ -29,7 +29,7 @@ const SearchContext = ({ children }: IProps) => {
 
   useDebounce(
     async () => {
-      if (!searchQuery) return;
+      if (!searchQuery && !gifs?.[currentPage]) return;
 
       try {
         const { newGifs, maxPages } = await getGifs(searchQuery, currentPage);
