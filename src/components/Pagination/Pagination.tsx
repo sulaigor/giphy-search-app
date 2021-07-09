@@ -4,7 +4,7 @@ import { getPageNumber } from './utils';
 import css from './pagination.module.scss';
 
 const Pagination = () => {
-  const { maxPages, setCurrentPage } = useSearchContext();
+  const { currentPage, maxPages, setCurrentPage } = useSearchContext();
 
   if (maxPages <= 1) {
     return null;
@@ -17,7 +17,11 @@ const Pagination = () => {
       <ul className={css.paginationList}>
         {new Array(maxPages).fill(null).map((_, index: number) => (
           <li key={`pagination-link-item-${index}`} className={css.paginationItem}>
-            <Button type='link' onClick={() => handleLinkClick(index)}>
+            <Button
+              type='link'
+              disabled={currentPage === getPageNumber(index)}
+              onClick={() => handleLinkClick(index)}
+            >
               {getPageNumber(index)}
             </Button>
           </li>
