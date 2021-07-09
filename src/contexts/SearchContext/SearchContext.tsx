@@ -10,6 +10,7 @@ import {
   setMaxPagesAction,
   setCurrentPageAction,
   setSearchQueryAction,
+  resetStateAction,
 } from './searchReducer/actions';
 import { SearchContextType } from './types';
 import { getGifs } from './utils';
@@ -19,6 +20,7 @@ const Context = createContext<SearchContextType>({
   gifs: null,
   setSearchQuery: dummyFunction,
   setCurrentPage: dummyFunction,
+  clearSearchQuery: dummyFunction,
 });
 
 const SearchContext = ({ children }: IProps) => {
@@ -48,12 +50,14 @@ const SearchContext = ({ children }: IProps) => {
   const setCurrentPage = (newCurrentPage: number) => dispatch(setCurrentPageAction(newCurrentPage));
   const setMaxPages = (newMaxPages: number) => dispatch(setMaxPagesAction(newMaxPages));
   const setSearchQuery = (newSearchQuery: string) => dispatch(setSearchQueryAction(newSearchQuery));
+  const clearSearchQuery = () => dispatch(resetStateAction());
 
   const contextValue: SearchContextType = {
     ...reducerState,
     gifs: gifs?.[currentPage] ?? null,
     setSearchQuery,
     setCurrentPage,
+    clearSearchQuery,
   };
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

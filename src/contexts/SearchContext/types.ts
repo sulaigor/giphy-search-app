@@ -4,6 +4,7 @@ import { IReducerState } from './searchReducer';
 interface ISearchContextActions {
   setSearchQuery: (newSearchQuery: string) => void;
   setCurrentPage: (newPage: number) => void;
+  clearSearchQuery: () => void;
 }
 
 interface ISearchContextState {
