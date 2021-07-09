@@ -5,5 +5,5 @@ interface IGifImage {
 export interface IGif {
   id: string;
   title: string;
-  images: Record<'original' | 'downsized_large', IGifImage>;
+  images: Record<'original' | 'downsized_medium', IGifImage>;
 }
