@@ -47,4 +47,8 @@
   height: 100%;
   vertical-align: middle;
   object-fit: fill;
+
+  &.imageLoading {
+    visibility: hidden;
+  }
 }

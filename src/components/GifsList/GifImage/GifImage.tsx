@@ -23,7 +23,12 @@ const GifImage = ({ gif }: IProps) => {
           <Paragraph className={css.title}>{title}</Paragraph>
         </div>
       )}
-      <img className={css.image} src={url} alt={title} onLoad={() => setLoadingImage(false)} />
+      <img
+        className={classNames(css.image, { [css.imageLoading]: loadingImage })}
+        src={url}
+        alt={title}
+        onLoad={() => setLoadingImage(false)}
+      />
     </div>
   );
 };
