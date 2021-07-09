@@ -4,7 +4,7 @@ import { useSearchContext } from 'contexts/SearchContext';
 import css from './searchInput.module.scss';
 
 const SearchInput = () => {
-  const { searchQuery, setSearchQuery } = useSearchContext();
+  const { searchQuery, setSearchQuery, clearSearchQuery } = useSearchContext();
 
   const handleSearchInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => setSearchQuery(target.value);
 
@@ -12,7 +12,7 @@ const SearchInput = () => {
     <div className={css.wrapper}>
       <input type='text' className={css.searchInput} value={searchQuery} onChange={handleSearchInputChange} />
       <div className={css.actionsWrapper}>
-        <Button onClick={() => {}}>Clear</Button>
+        <Button onClick={clearSearchQuery}>Clear</Button>
       </div>
     </div>
   );
