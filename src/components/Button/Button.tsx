@@ -9,12 +9,17 @@ enum BUTTON_TYPE {
 
 interface IProps extends IStringChildrenProps {
   type?: keyof typeof BUTTON_TYPE;
+  disabled?: boolean;
   onClick: () => void;
 }
 
-const Button = ({ children, type = BUTTON_TYPE.primary, onClick }: IProps) => {
+const Button = ({ children, type = BUTTON_TYPE.primary, disabled, onClick }: IProps) => {
   return (
-    <button type='button' className={classNames(css.btn, css[type])} onClick={onClick}>
+    <button
+      type='button'
+      className={classNames(css.btn, css[type], { [css.disabled]: disabled })}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
